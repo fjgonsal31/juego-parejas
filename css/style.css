@@ -1,0 +1,36 @@
+h1,
+div {
+    text-align: center;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    border: 1px solid black;
+    background-color: black;
+}
+
+.hide {
+    width: 8rem;
+    height: 8rem;
+    font-size: 5rem;
+    background-color: blue;
+}
+
+.show {
+    width: 8rem;
+    height: 8rem;
+    font-size: 5rem;
+    background-color: white;
+}
+
+.always {
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    font-size: 5rem;
+    background-color: white;
+}
