@@ -1,11 +1,17 @@
+// *************************************DECLARACIONES***************************************
+// variables
 let imgs = ["😍", "😴", "🤑", "🥵", "🥶", "😱", "😭", "🤢", "😍", "😴", "🤑", "🥵", "🥶", "😱", "😭", "🤢"];
 let tabla = document.getElementById("tabla");
-let newImgs = desordenarArray(imgs);
 let tdTag = document.getElementsByTagName("td");
-let tdClass = document.getElementsByClassName("td");
 let hideClass = document.getElementsByClassName("hide");
+let noneClass = document.getElementsByClassName("none");
+let count = 0;
+let first = "";
+let firstPrevElement = "";
+let second = "";
+let secondPrevElement = "";
 
-// función para mezclar un array
+// mezclar un array
 function desordenarArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -15,67 +21,112 @@ function desordenarArray(array) {
     return array;
 }
 
-// crear filas y celdas
-for (let i = 0; i < 4; i++) {
-    let tr = document.createElement("tr");
-    tabla.appendChild(tr);
+// resetear cada 2 clics (sean pareja o no)
+function reset(param) {
+    count = param;
+    first = "";
+    second = "";
+    firstPrevElement = "";
+    secondPrevElement = "";
+}
 
-    for (let x = 0; x < 4; x++) {
-        let newTd = document.createElement("td");
-        newTd.setAttribute("class", "td");
-        tr.appendChild(newTd);
+// eliminar todas las filas y sus celdas
+function remove() {
+    tabla.replaceChildren();
+}
+
+// crear todas las filas y sus celdas
+function create() {
+    let newImgs = desordenarArray(imgs);
+
+    // crear filas
+    for (let i = 0; i < 4; i++) {
+        let tr = document.createElement("tr");
+        // insertar fila a la tabla
+        tabla.appendChild(tr);
+
+        // crear celdas
+        for (let x = 0; x < 4; x++) {
+            let newTd = document.createElement("td");
+            // insertar clase
+            newTd.setAttribute("class", "td");
+            // insertar celda a la fila
+            tr.appendChild(newTd);
+        }
+    }
+
+    // insertar datos en cada celda
+    for (let i = 0; i < tdTag.length; i++) {
+        let divShow = document.createElement("div");
+        let divHide = document.createElement("div");
+
+        //borrar hijos de tag td
+        tdTag[i].replaceChildren();
+        // añadir divs
+        tdTag[i].appendChild(divShow);
+        tdTag[i].appendChild(divHide);
+        // insertar clases
+        divShow.setAttribute("class", "show");
+        divHide.setAttribute("class", "hide");
+        // mostrar/ocultar elementos
+        divShow.style.display = "none";
+        divHide.style.display = "block";
+        // insertar datos en cada div
+        divShow.textContent = newImgs[i];
+        divHide.textContent = "❔";
     }
 }
 
-// insertar iconos en cada celda
-let count = 0;
-let first = "";
-let second = "";
+// clic en clase hide
+function click() {
+    Array.from(hideClass).forEach((element) => {
+        // clic en cada clase hide
+        element.addEventListener("click", function () {
+            count++;
 
-for (let i = 0; i < tdTag.length; i++) {
-    let divShow = document.createElement("div");
-    let divHide = document.createElement("div");
-
-    tdTag[i].appendChild(divShow);
-    tdTag[i].appendChild(divHide);
-    divShow.setAttribute("class", "show");
-    divHide.setAttribute("class", "hide");
-    divShow.style.display = "none";
-    divHide.style.display = "block";
-    divShow.textContent = newImgs[i];
-
-    // click en cada clase td
-    hideClass[i].addEventListener("click", function () {
-        count++;
-        divShow.style.display = "block";
-        divHide.style.display = "none";
-
-        switch (count) {
-            case 1:
-                first = hideClass[i].previousElementSibling;
-                break;
-            case 2:
-                second = hideClass[i].previousElementSibling;
-                break;
-        }
-
-        if (count > 2) {
-            for (let i = 0; i < hideClass.length; i++) {
-                hideClass[i].style.display = "block";
-                hideClass[i].previousElementSibling.style.display = "none";
+            // resetear cada 2 clics
+            if (count > 2) {
+                reset(1);
+                Array.from(hideClass).forEach(element => {
+                    element.style.display = "block";
+                    element.previousElementSibling.style.display = "none";
+                });
             }
-            count = 0;
-            first = "";
-            second = "";
-        }
 
-        if (first.textContent == second.textContent && (first != "" && second != "")) {
-            hideClass[i].previousElementSibling.classList.add("always");
-            hideClass[i].previousElementSibling.classList.remove("show");
-            count = 0;
-            first = "";
-            second = "";
-            console.log("dentro");
-        }
+            // obtener elementos clicados
+            if (count === 1) {
+                first = element;
+                firstPrevElement = element.previousElementSibling;
+            } else if (count === 2) {
+                second = element;
+                secondPrevElement = element.previousElementSibling;
+            }
+
+            // mostrar/ocultar elementos
+            element.style.display = "none";
+            element.previousElementSibling.style.display = "block";
+
+            // actuar si los 2 elementos son iguales y no están vacíos
+            if (firstPrevElement.textContent === secondPrevElement.textContent && (firstPrevElement !== "" && secondPrevElement !== "")) {
+                // insertar clases
+                first.classList.add("none");
+                second.classList.add("none");
+                // eliminar clases
+                first.classList.remove("hide");
+                second.classList.remove("hide");
+                reset(0);
+            }
+
+            // actuar si toda la tabla está descubierta
+            if (Array.from(hideClass).length < 1) {
+                remove();
+                create();
+                click();
+            }
+        });
     });
 }
+
+// *************************************LLAMADAS A FUNCIONES***************************************
+create();
+click();

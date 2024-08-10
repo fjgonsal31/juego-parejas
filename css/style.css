@@ -1,3 +1,7 @@
+body {
+    background-color: rgb(77, 71, 71);
+}
+
 h1,
 div {
     text-align: center;
@@ -13,24 +17,18 @@ table {
     background-color: black;
 }
 
+.hide,
+.show {
+    width: 4rem;
+    height: 4rem;
+    font-size: 2.5rem;
+
+}
+
 .hide {
-    width: 8rem;
-    height: 8rem;
-    font-size: 5rem;
     background-color: blue;
 }
 
 .show {
-    width: 8rem;
-    height: 8rem;
-    font-size: 5rem;
-    background-color: white;
-}
-
-.always {
-    display: block;
-    width: 8rem;
-    height: 8rem;
-    font-size: 5rem;
     background-color: white;
 }
