@@ -1,34 +1,165 @@
 body {
-    background-color: rgb(77, 71, 71);
+  background-color: #635a5a;
 }
-
 h1,
-div {
-    text-align: center;
+.sectTabla {
+  text-align: center;
+}
+.sectTabla {
+  display: flex;
+  justify-content: center;
+}
+.success {
+  width: 5rem;
+  height: 2rem;
+  background-color: #5bf362;
+  font-weight: bolder;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.danger {
+  width: 5rem;
+  height: 2rem;
+  background-color: #f35b5b;
+  font-weight: bolder;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 
-div {
-    display: flex;
-    justify-content: center;
+/* tabla */
+#tabla {
+  cursor: not-allowed;
 }
-
-table {
-    border: 1px solid black;
-    background-color: black;
-}
-
 .hide,
 .show {
-    width: 4rem;
-    height: 4rem;
-    font-size: 2.5rem;
-
+  width: 4rem;
+  height: 4rem;
+  font-size: 2.5rem;
+  text-align: center;
 }
-
 .hide {
-    background-color: blue;
+  background-color: blue;
+}
+.show {
+  background-color: white;
 }
 
-.show {
-    background-color: white;
+/* cronometro y botones */
+.sectExtra {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.start {
+  margin: 0 0.5rem 0 0.5rem;
+}
+.startDisabled {
+  background-color: grey;
+  cursor: not-allowed;
+  margin: 0 0.5rem 0 0.5rem;
+}
+.start:hover {
+  background-color: rgb(46, 155, 4);
+}
+.restart {
+  margin: 0 0.5rem 0 0.5rem;
+}
+.restart:hover {
+  background-color: rgb(184, 2, 2);
+}
+#time {
+  font-weight: bolder;
+  font-size: xx-large;
+  margin: 1rem;
+}
+
+/* records */
+.records {
+  margin: 3rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#tablaRecords tr {
+  text-align: center;
+  background-color: blue;
+  color: white;
+  border: 1px solid white;
+}
+th {
+  width: auto;
+}
+td {
+  font-weight: bold;
+}
+#userRecord1 {
+  color: black !important;
+  background-color: #f1c566 !important;
+}
+#userRecord2 {
+  color: black !important;
+  background-color: #b1aea9 !important;
+}
+#userRecord3 {
+  color: black !important;
+  background-color: #cf714c !important;
+}
+
+/* modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: 8rem auto;
+  padding: 1.25rem;
+  border: 1px solid #888;
+  width: 40%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+h2 {
+  text-align: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#aceptar {
+  margin: 1rem;
+}
+
+#aceptar:hover {
+  background-color: rgb(46, 155, 4);
+}
+#content {
+  font-weight: bolder;
+  font-size: large;
+}
+
+/* tooltip */
+.tooltip {
+  display: block;
+  position: absolute;
+  top: 175px;
+  left: auto;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 30px;
+  white-space: nowrap;
 }

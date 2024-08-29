@@ -5,14 +5,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
+    <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
     <title>Parejas</title>
 </head>
 
 <body>
     <h1>Juego de Memoria Visual</h1>
-    <div>
+    <!-- tabla de juego -->
+    <section class="sectTabla">
+        <div class="tooltip" id="tooltip">Clica 'Iniciar' para comenzar la partida</div>
         <table id="tabla"></table>
-    </div>
+    </section>
+    <!-- cronómetro y botones -->
+    <section class="sectExtra">
+        <p id="time">00:00</p>
+        <div>
+            <button id="start" class="start success">Iniciar</button>
+            <button id="restart" class="restart danger">Resetear</button>
+        </div>
+    </section>
+    <!-- mejores tiempos -->
+    <section class="records">
+        <table id="tablaRecords">
+            <tr>
+                <th>Posición</th>
+                <th class="th">Usuario</th>
+                <th class="th">Tiempo</th>
+            </tr>
+            <tr id="userRecord1">
+            </tr>
+            <tr id="userRecord2">
+            </tr>
+            <tr id="userRecord3">
+            </tr>
+        </table>
+    </section>
+    <!-- modal -->
+    <section id="myModal" class="modal">
+        <div class="modal-content">
+            <h2>¡Has finalizado!</h2>
+            <form>
+                <input type="text" id="user" placeholder="Tu nick (máx. 20 caracteres)" maxlength="20" required>
+                <p id="content"></p>
+                <div>
+                    <button id="aceptar" class="success">Aceptar</button>
+                    <button id="cancelar" class="danger">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </section>
     <script src="js/script.js"></script>
 </body>
 
