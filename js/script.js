@@ -32,7 +32,7 @@ const content = document.getElementById("content");
 let records = [];
 
 // tooltip
-let miTooltip = document.getElementById("tooltip");
+let tooltip = document.getElementById("tooltip");
 
 // **************FUNCIONES**************
 
@@ -283,14 +283,14 @@ btnAceptar.addEventListener("click", function () {
   create();
   saveStorage();
   if (modal.style.display === "none") {
-    miTooltip.style.display = "block";
+    tooltip.style.display = "block";
   }
 });
 
 // modal, clic en "Cancelar"
 btnCancelar.addEventListener("click", function () {
   modal.style.display = "none";
-  miTooltip.style.display = "block";
+  tooltip.style.display = "block";
 });
 
 // clic en iniciar
@@ -300,7 +300,7 @@ btnStart.addEventListener("click", function () {
   toggleBtnStart();
   tabla.style.cursor = "pointer";
   btnStart.disabled = true;
-  miTooltip.style.display = "none";
+  tooltip.style.display = "none";
 });
 
 // clic en resetear
@@ -314,7 +314,7 @@ btnRestart.addEventListener("click", function () {
   }
 
   tabla.style.cursor = "not-allowed";
-  miTooltip.style.display = "block";
+  tooltip.style.display = "block";
   btnStart.disabled = false;
 });
 
